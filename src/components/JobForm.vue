@@ -1,72 +1,64 @@
 <template>
-  <div class="container">
-    <form class="form-row">
-      <div class="form-group col-lg-4 col-md-6 col-sm-12">
-        <input
-          type="text"
-          id="company"
-          v-model="formData.company"
-          placeholder="Company Name"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group col-lg-4 col-md-6 col-sm-12">
-        <input
-          type="text"
-          id="job"
-          v-model="formData.job"
-          placeholder="Job Name"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group col-lg-4 col-md-6 col-sm-12">
-        <input
-          type="text"
-          id="URLJobOffer"
-          v-model="formData.URLJobOffer"
-          placeholder="Url Job Offer"
-          class="form-control"
-        />
-      </div>
-      <div
-        class="form-group d-flex justify-content-around col-lg-2 col-md-6 col-sm-12 "
-      >
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            id="CV"
+  <v-form>
+    <v-container>
+      <v-row>
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="formData.company"
+            :rules="nameRules"
+            label="Company Name"
+            required
+          ></v-text-field>
+        </v-col>
+
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="formData.job"
+            :rules="nameRules"
+            label="Job Name"
+            required
+          ></v-text-field>
+        </v-col>
+
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="formData.URLJobOffer"
+            :rules="URLRules"
+            label="Url Job Offer"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="3">
+          <v-checkbox
             v-model="formData.pieceSend"
+            label="CV"
             value="CV"
-            class="custom-control-input"
-          />
-          <label class="custom-control-label" for="CV">CV</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            id="CL"
+          ></v-checkbox>
+          <v-checkbox
             v-model="formData.pieceSend"
+            label="Cover Letter"
             value="CL"
-            class="custom-control-input"
-          />
-          <label class="custom-control-label" for="CL">Cover Letter</label>
-        </div>
-      </div>
-      <div class="form-group  col-lg-8 col-md-10 col-sm-12">
-        <textarea
-          id="txt"
-          v-model="formData.txt"
-          placeholder="Complements"
-          class="form-control"
-        ></textarea>
-      </div>
-      <button class="btn btn-primary col-lg col-md col-sm-12">ADD</button>
-    </form>
-    <div class="mt-3">
-      <h3>Last Job apply</h3>
-    </div>
+          ></v-checkbox>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-textarea
+            outlined
+            id="txt"
+            v-model="formData.txt"
+            label="Complements"
+          ></v-textarea>
+        </v-col>
+        <v-col cols="12" md="2" class="d-flex">
+          <v-btn elevation="7" class="mx-2" fab dark color="indigo">
+            <v-icon dark>mdi-plus</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
     <JobCard :data="formData" :date="now"></JobCard>
-  </div>
+  </v-form>
 </template>
 <script>
 import moment from "moment";

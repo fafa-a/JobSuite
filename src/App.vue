@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <headerH1 msg="Job suite" />
       <jobForm />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
