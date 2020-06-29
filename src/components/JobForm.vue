@@ -48,40 +48,35 @@
           <label for="CL">Cover Letter</label>
         </div>
       </div>
-      <div class="btn btn-primary">Submit</div>
     </form>
     <div class="mt-3">
       <h3>Last Job apply</h3>
     </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{ formData.company }}</h5>
-        <p class="card-text">{{ formData.job }} {{ now }}</p>
-        <a :href="formData.URLJobOffer" class="btn btn-primary">Go Job page</a>
-      </div>
-    </div>
+    <JobCard :data="formData" :date="now"></JobCard>
   </div>
 </template>
 <script>
 import moment from "moment";
+import JobCard from "./JobCard";
 
 export default {
   name: "JobForm",
   data() {
     return {
       formData: {
-        company: "",
-        job: "",
+        company: "Nike",
+        job: "Developer",
         URLJobOffer: "",
-        pieceSend: [],
+        pieceSend: ["CV", "CL"],
       },
     };
   },
   computed: {
     now: function() {
-      return moment().format("DD-MM-YYYY");
+      return moment().format("dddd DD-MM-YYYY");
     },
   },
+  components: { JobCard },
 };
 </script>
 
