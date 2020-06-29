@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <h2></h2>
     <form class="form-row">
-      <div class="form-group col-lg-3 col-md-6 col-sm-12">
+      <div class="form-group col-lg-4 col-md-6 col-sm-12">
         <input
           type="text"
           id="company"
@@ -11,7 +10,7 @@
           class="form-control"
         />
       </div>
-      <div class="form-group col-lg-3 col-md-6 col-sm-12">
+      <div class="form-group col-lg-4 col-md-6 col-sm-12">
         <input
           type="text"
           id="job"
@@ -20,7 +19,7 @@
           class="form-control"
         />
       </div>
-      <div class="form-group col-lg-3 col-md-6 col-sm-12">
+      <div class="form-group col-lg-4 col-md-6 col-sm-12">
         <input
           type="text"
           id="URLJobOffer"
@@ -29,25 +28,39 @@
           class="form-control"
         />
       </div>
-      <div class="form-group col-lg-3 col-md-6 col-sm-12">
-        <div class="form-control">
+      <div
+        class="form-group d-flex justify-content-around col-lg-2 col-md-6 col-sm-12 "
+      >
+        <div class="custom-control custom-checkbox">
           <input
             type="checkbox"
             id="CV"
             v-model="formData.pieceSend"
             value="CV"
+            class="custom-control-input"
           />
-          <label for="CV">CV</label>
+          <label class="custom-control-label" for="CV">CV</label>
+        </div>
+        <div class="custom-control custom-checkbox">
           <input
             type="checkbox"
             id="CL"
             v-model="formData.pieceSend"
             value="CL"
-            class="ml-2"
+            class="custom-control-input"
           />
-          <label for="CL">Cover Letter</label>
+          <label class="custom-control-label" for="CL">Cover Letter</label>
         </div>
       </div>
+      <div class="form-group  col-lg-8 col-md-10 col-sm-12">
+        <textarea
+          id="txt"
+          v-model="formData.txt"
+          placeholder="Complements"
+          class="form-control"
+        ></textarea>
+      </div>
+      <button class="btn btn-primary col-lg col-md col-sm-12">ADD</button>
     </form>
     <div class="mt-3">
       <h3>Last Job apply</h3>
@@ -64,10 +77,11 @@ export default {
   data() {
     return {
       formData: {
-        company: "Nike",
-        job: "Developer",
+        company: "",
+        job: "",
         URLJobOffer: "",
-        pieceSend: ["CV", "CL"],
+        pieceSend: ["", ""],
+        txt: "",
       },
     };
   },
@@ -86,6 +100,9 @@ form {
   margin-top: 25px;
 }
 .btn {
-  height: 38px;
+  height: 62px;
+}
+.custom-control {
+  display: inline !important;
 }
 </style>
