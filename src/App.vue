@@ -25,7 +25,4 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat&family=Roboto&display=swap");
-#app {
-  margin-top: 40px;
-}
 </style>
