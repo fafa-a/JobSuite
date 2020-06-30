@@ -9,7 +9,7 @@
 
 <script>
 import HeaderH1 from "./components/HeaderH1.vue";
-import JobForm from "./components/JobForm";
+import JobForm from "./components/JobForm.vue";
 export default {
   name: "App",
 
