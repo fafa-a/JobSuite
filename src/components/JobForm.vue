@@ -71,7 +71,7 @@ export default {
       formData: {
         company: "",
         job: "",
-        URLJobOffer: "",
+        URLJobOffer: "https://www.youtube.com/",
         pieceSend: ["", ""],
         txt: "",
       },
@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     now: function() {
-      return moment().format("dddd DD-MM-YYYY");
+      return moment().format("DD-MM-YYYY");
     },
   },
   components: { JobCard },
@@ -87,14 +87,8 @@ export default {
 </script>
 
 <style scoped>
-form {
-  font-family: "Roboto";
+.v-form {
+  font-family: "Montserrat";
   margin-top: 25px;
-}
-.btn {
-  height: 62px;
-}
-.custom-control {
-  display: inline !important;
 }
 </style>
