@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-form>
+    <v-form v-model="valid">
       <v-row>
         <v-col cols="12" sm="4">
           <v-text-field
@@ -21,6 +21,7 @@
         <v-col cols="12" sm="4">
           <v-text-field
             v-model="formData.URLJobOffer"
+            :rules="URLJobRules"
             label="Url Job Offer"
             required
           ></v-text-field>
@@ -53,6 +54,7 @@
           </v-btn>
         </v-col>
       </v-row>
+      <p>* {{ valid }}</p>
     </v-form>
     <JobCard :data="jobInfo" :date="now"></JobCard>
   </div>
@@ -65,6 +67,7 @@ export default {
   name: "JobForm",
   data() {
     return {
+      valid: false,
       formData: {
         company: "",
         job: "",
@@ -72,20 +75,28 @@ export default {
         pieceSend: [],
         txt: "",
       },
-
       jobInfo: [],
+      URLJobRules: [
+        (v) => !!v || "URL is required",
+        /* eslint-disable */
+        (v) =>
+          /https?:[0-9]*\/\/[\w!?/\+\-_~=;\.,*&@#$%\(\)\'\[\]]+/.test(v) ||
+          "URL must be valid",
+      ],
     };
   },
   methods: {
     added: function() {
-      this.jobInfo.push(this.formData);
-      this.formData = {
-        company: "",
-        job: "",
-        URLJobOffer: "",
-        pieceSend: [],
-        txt: "",
-      };
+      if (this.valid) {
+        this.jobInfo.push(this.formData);
+        this.formData = {
+          company: "",
+          job: "",
+          URLJobOffer: "",
+          pieceSend: [],
+          txt: "",
+        };
+      }
     },
   },
   computed: {
