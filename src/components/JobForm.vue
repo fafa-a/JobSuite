@@ -54,7 +54,6 @@
           </v-btn>
         </v-col>
       </v-row>
-      <p>* {{ valid }}</p>
     </v-form>
     <JobCard :data="jobInfo" :date="now"></JobCard>
   </div>
@@ -96,6 +95,7 @@ export default {
           pieceSend: [],
           txt: "",
         };
+        this.valid = !valid;
       }
     },
   },
