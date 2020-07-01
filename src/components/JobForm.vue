@@ -91,7 +91,7 @@ export default {
         this.formData = {
           company: "",
           job: "",
-          URLJobOffer: "",
+          URLJobOffer: "http://www.fixErrorURl.com",
           pieceSend: [],
           txt: "",
         };
