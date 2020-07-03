@@ -1,5 +1,9 @@
 <template>
   <div>
+    <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+      <span>Awesome! You added a new job offer.</span>
+      <v-btn text color="white" @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
     <v-form v-model="valid">
       <v-row>
         <v-col cols="12" sm="4">
@@ -49,12 +53,20 @@
           ></v-textarea>
         </v-col>
         <v-col class="d-flex justify-center align-center">
-          <v-btn elevation="7" fab dark color="indigo" @click="added">
+          <v-btn
+            elevation="7"
+            fab
+            dark
+            color="indigo"
+            @click="added"
+            :loading="loading"
+          >
             <v-icon dark>mdi-plus</v-icon>
           </v-btn>
         </v-col>
       </v-row>
     </v-form>
+
     <JobCard :data="jobInfo" :date="now"></JobCard>
   </div>
 </template>
@@ -68,6 +80,8 @@ export default {
   data() {
     return {
       valid: false,
+      loading: false,
+      snackbar: false,
       formData: {
         company: "",
         job: "",
@@ -88,6 +102,7 @@ export default {
   methods: {
     added: function() {
       if (this.valid) {
+        this.loading = true;
         const jobOffer = {
           company: this.formData.company,
           job: this.formData.job,
@@ -99,7 +114,8 @@ export default {
         db.collection("job-offer")
           .add(jobOffer)
           .then(() => {
-            console.log("added to db");
+            this.loading = false;
+            this.snackbar = true;
           });
 
         this.jobInfo.push(this.formData);

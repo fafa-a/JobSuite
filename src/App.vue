@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <headerH1 msg="Job suite" />
-      <jobForm />
+      <jobForm @offerAdded="snackbar = true" />
     </v-main>
   </v-app>
 </template>
@@ -18,9 +18,7 @@ export default {
     JobForm,
   },
 
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
 };
 </script>
 <style>
