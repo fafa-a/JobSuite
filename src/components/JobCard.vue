@@ -1,9 +1,10 @@
 <template>
   <v-row>
     <v-col cols="12" lg="3" sm="4" v-for="(job, index) in data" :key="index">
+      {{ job.id }}{{ index }}
       <v-card class="mb-6 mx-auto" min-width="300">
         <v-card-text>
-          <p class="display-1 text--primary">{{ job.job }}</p>
+          <p class="display-1 text--primary text-capitalize">{{ job.job }}</p>
           <div>
             <span class="text--primary ">Company :</span
             ><span class="text-uppercase">{{ job.company }}</span>
@@ -11,18 +12,20 @@
           <p class="text-right date">{{ date }}</p>
           <p class="mt-2">
             Piece send :
-            <span v-if="job.pieceSend.includes('CV')" class="ml-6">
+            <span v-if="job.pieces.includes('CV')" class="ml-6">
               <i class="far fa-check-square"> CV</i>
             </span>
-            <span v-if="job.pieceSend.includes('CL')" class="ml-6">
+            <span v-if="job.pieces.includes('CL')" class="ml-6">
               <i class="far fa-check-square"> CL</i>
             </span>
           </p>
           <div>
-            <p v-if="job.txt" class="card-text">
+            <p v-if="job.complements" class="card-text">
               <span class="text--primary">Complements :</span>
-              <br />{{ job.txt }}
+              <br />
+              {{ job.complements }}
             </p>
+
             <p v-else class="card-text">No complements</p>
           </div>
         </v-card-text>
@@ -30,11 +33,7 @@
         <v-divider class="mt-1 mx-4"></v-divider>
         <v-card-actions>
           <v-card-text class="d-flex justify-space-around">
-            <v-chip
-              :href="job.URLJobOffer"
-              target="_blank"
-              class="mr-1 job-link"
-            >
+            <v-chip :href="job.URL" target="_blank" class="mr-1 job-link">
               <v-icon color="green darken-1 accent-4" left
                 >fas fa-external-link-alt</v-icon
               >
@@ -69,7 +68,7 @@
             Cancel
           </v-btn>
 
-          <v-btn color="red darken-1" text @click="deleted">
+          <v-btn color="red darken-1" text @click="deleted(job)">
             Confirm
           </v-btn>
         </v-card-actions>
@@ -79,6 +78,8 @@
 </template>
 
 <script>
+import db from "@/fb";
+
 export default {
   name: "JobCard",
   data() {
@@ -88,13 +89,33 @@ export default {
   },
   props: ["data", "date"],
   methods: {
-    deleted: function() {
-      this.data.pop();
+    deleted: function(job) {
+      console.log(job);
+
+      // let id = this.job.id;
+      // db.collection("job-offer")
+      //   .doc(id)
+      //   .delete();
+      // // this.data.pop();
       this.dialog = false;
     },
     edited: function() {
-      alert("nOt yEt !!!!");
+      console.log(this);
     },
+  },
+  created() {
+    db.collection("job-offer").onSnapshot((res) => {
+      const changes = res.docChanges();
+
+      changes.forEach((change) => {
+        if (change.type === "added") {
+          this.data.push({
+            ...change.doc.data(),
+            id: change.doc.id,
+          });
+        }
+      });
+    });
   },
 };
 </script>
