@@ -61,6 +61,7 @@
 <script>
 import moment from "moment";
 import JobCard from "./JobCard";
+import db from "@/fb";
 
 export default {
   name: "JobForm",
@@ -87,6 +88,20 @@ export default {
   methods: {
     added: function() {
       if (this.valid) {
+        const jobOffer = {
+          company: this.formData.company,
+          job: this.formData.job,
+          URL: this.formData.URLJobOffer,
+          pieces: this.formData.pieceSend,
+          complements: this.formData.txt,
+          date: this.now,
+        };
+        db.collection("job-offer")
+          .add(jobOffer)
+          .then(() => {
+            console.log("added to db");
+          });
+
         this.jobInfo.push(this.formData);
         this.formData = {
           company: "",
@@ -95,7 +110,6 @@ export default {
           pieceSend: [],
           txt: "",
         };
-        this.valid = !valid;
       }
     },
   },
