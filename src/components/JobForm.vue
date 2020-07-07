@@ -4,12 +4,13 @@
       <span>Awesome! You added a new job offer.</span>
       <v-btn text color="white" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-form v-model="valid">
+    <v-form v-model="valid" ref="form">
       <v-row>
         <v-col cols="12" sm="4">
           <v-text-field
             v-model="formData.company"
             label="Company Name"
+            :rules="nameRules"
             required
           ></v-text-field>
         </v-col>
@@ -85,11 +86,15 @@ export default {
       formData: {
         company: "",
         job: "",
-        URLJobOffer: "http://www.fixErrorURL.com",
+        URLJobOffer: "",
         pieceSend: [],
         txt: "",
       },
       jobInfo: [],
+      nameRules:[
+        (v) => !!v || "Field is required",
+        (v)=> (v && v.length >= 3)||"This field must be more than 03 characters"
+      ],
       URLJobRules: [
         (v) => !!v || "URL is required",
         /* eslint-disable */
@@ -116,16 +121,8 @@ export default {
           .then(() => {
             this.loading = false;
             this.snackbar = true;
+            this.$refs.form.reset();
           });
-
-        this.jobInfo.push(this.formData);
-        this.formData = {
-          company: "",
-          job: "",
-          URLJobOffer: "http://www.fixErrorURL.com",
-          pieceSend: [],
-          txt: "",
-        };
       }
     },
   },
