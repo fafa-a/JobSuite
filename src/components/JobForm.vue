@@ -68,7 +68,7 @@
       </v-row>
     </v-form>
 
-    <JobCard :data="jobInfo" :date="now"></JobCard>
+    <JobCard :data="jobInfo" :date="now" :snackbar="snackbar"></JobCard>
   </div>
 </template>
 <script>
@@ -91,9 +91,10 @@ export default {
         txt: "",
       },
       jobInfo: [],
-      nameRules:[
+      nameRules: [
         (v) => !!v || "Field is required",
-        (v)=> (v && v.length >= 3)||"This field must be more than 03 characters"
+        (v) =>
+          (v && v.length >= 3) || "This field must be more than 03 characters",
       ],
       URLJobRules: [
         (v) => !!v || "URL is required",

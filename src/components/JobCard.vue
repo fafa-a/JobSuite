@@ -1,5 +1,9 @@
 <template>
   <v-row>
+    <v-snackbar v-model="snackbarDel" :timeout="4000" top color="success">
+      <span>Job offer deleted !</span>
+      <v-btn text color="white" @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
     <v-col cols="12" lg="3" sm="4" v-for="(job, index) in data" :key="index">
       <v-card class="mb-6 mx-auto" min-width="300">
         <v-card-text>
@@ -44,7 +48,7 @@
               <v-icon color="orange darken-1" left>far fa-edit</v-icon>
               Edit
             </v-chip>
-            <v-chip class="delete" @click="dialog = true">
+            <v-chip class="delete" @click="deleted(job)">
               <v-icon color="red darken-1" left>far fa-trash-alt</v-icon>
               Delete
             </v-chip>
@@ -52,7 +56,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <dialog-comfirm :dialog="dialog" @confirmDeleted="deleted($event)" />
+    <dialog-comfirm ref="confirm" />
   </v-row>
 </template>
 
@@ -63,19 +67,24 @@ export default {
   name: "JobCard",
   data() {
     return {
+      snackbarDel: false,
       dialog: false,
     };
   },
-  props: ["data", "date", "jobId"],
+  props: ["data", "date"],
   components: { "dialog-comfirm": DialogComfirm },
   methods: {
     deleted: function(job) {
-      let id = job.id;
-      console.log(id);
-      // db.collection("job-offer")
-      //   .doc(id)
-      //   .delete();
-      // this.dialog = false;
+      this.$refs.confirm.open().then(() => {
+        let id = job.id;
+        db.collection("job-offer")
+          .doc(id)
+          .delete()
+          .then(() => {
+            this.dialog = false;
+            this.snackbarDel = true;
+          });
+      });
     },
     edited: function() {
       console.log("not ok");
@@ -91,6 +100,8 @@ export default {
             ...change.doc.data(),
             id: change.doc.id,
           });
+        } else if (change.type === "removed") {
+          location.reload();
         }
       });
     });
