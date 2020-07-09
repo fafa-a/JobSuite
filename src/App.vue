@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <AuthPage />
       <headerH1 msg="Job suite" />
       <jobForm @offerAdded="snackbar = true" />
     </v-main>
@@ -8,12 +9,14 @@
 </template>
 
 <script>
-import HeaderH1 from "./components/HeaderH1.vue";
-import JobForm from "./components/JobForm.vue";
+import AuthPage from "./components/AuthPage";
+import HeaderH1 from "./components/HeaderH1";
+import JobForm from "./components/JobForm";
 export default {
   name: "App",
 
   components: {
+    AuthPage,
     HeaderH1,
     JobForm,
   },
@@ -22,7 +25,14 @@ export default {
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap");
+
+#app {
+  background-color: #ecfbfc;
+}
+.col {
+  padding: 0 !important;
+}
 .row {
   margin: auto;
 }
