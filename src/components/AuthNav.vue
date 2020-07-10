@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12">
+  <v-col cols="12" md="12" sm="12">
     <div class="auth-link">
       <p class="text-right">Already a member? <a href="#">Sign In</a></p>
     </div>

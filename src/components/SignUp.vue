@@ -1,7 +1,7 @@
 <template>
   <v-form v-model="valid" class="mx-auto">
     <v-container>
-      <v-col cols="12">
+      <v-col cols="12" md="12" sm="12">
         <h2 class="mb-7">Sign up to Job Suite</h2>
         <AuthWithSocial />
         <v-form v-model="valid" ref="form">
