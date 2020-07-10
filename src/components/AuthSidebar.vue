@@ -34,10 +34,24 @@ h2 {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #235952;
+  position: relative;
+  mix-blend-mode: di;
 }
+/* 
+h2::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 80px;
+  background: #ffc8bd;
+   mix-blend-mode: hard-light;
+} */
+
 .auth-sidebar {
   background: #feebda;
-  color: #feebda;
   height: 100vh;
 }
 .auth-sidebar__content {
@@ -51,18 +65,19 @@ h2 {
 }
 header {
   padding: 64px 44px 30px;
+  padding-left: 90px;
 }
 .artwork {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   flex-grow: 1;
+  /* padding: 60px; */
 }
 .artwork__img {
   background-image: url("../assets/responsive.png");
   flex-grow: 1;
   background-repeat: no-repeat;
-  background-position: bottom center;
-  background-size: contain;
+  background-position: center;
+  background-size: 80%;
 }
 </style>

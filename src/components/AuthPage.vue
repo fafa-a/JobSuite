@@ -1,15 +1,17 @@
 <template>
-  <!-- <v-row> -->
-
+  <v-row>
     <AuthSidebar />
-    <!-- <SignUp /> -->
-    <!-- <SignIn /> -->
-
-  <!-- </v-row> -->
+    <v-row>
+      <AuthNav />
+      <SignUp />
+      <!-- <SignIn /> -->
+    </v-row>
+  </v-row>
 </template>
 <script>
 import AuthSidebar from "./AuthSidebar";
-// import SignUp from "./SignUp";
+import AuthNav from "./AuthNav";
+import SignUp from "./SignUp";
 // import SignIn from "./SignIn";
 export default {
   name: "AuthPage",
@@ -18,9 +20,14 @@ export default {
   },
   components: {
     AuthSidebar,
-    // SignUp,
+    AuthNav,
+    SignUp,
     // SignIn,
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.row .row {
+  margin: 0 !important;
+}
+</style>

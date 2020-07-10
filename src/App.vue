@@ -37,7 +37,7 @@ export default {
   margin: auto;
 }
 
-@media (min-width: 960px) {
+/* @media (min-width: 960px) {
   .row {
     max-width: 85%;
     margin: auto;
@@ -47,5 +47,5 @@ export default {
   .row {
     max-width: 70%;
   }
-}
+} */
 </style>
