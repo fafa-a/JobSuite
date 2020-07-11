@@ -1,6 +1,6 @@
 <template>
   <v-col cols="5">
-    <div class="auth-sidebar">
+    <div class="auth-sidebar hidden-sm-and-down">
       <div class="auth-sidebar__content">
         <div class="auth-sidebar__header">
           <header>
