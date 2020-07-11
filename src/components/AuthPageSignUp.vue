@@ -2,8 +2,7 @@
   <v-row>
     <AuthSidebar />
     <v-col col="7" md="7" sm="12" xs="12" class="relative">
-      <AuthNav />
-      <AuthSignIn />
+      <AuthNav :txt="txt" :hrefTxt="hrefTxt" :href="href" />
       <AuthSignUp />
     </v-col>
   </v-row>
@@ -12,17 +11,19 @@
 import AuthSidebar from "./AuthSidebar";
 import AuthNav from "./AuthNav";
 import AuthSignUp from "./AuthSignUp";
-import AuthSignIn from "./AuthSignIn";
 export default {
   name: "AuthPage",
   data() {
-    return {};
+    return {
+      txt: "Already a member?",
+      hrefTxt: "Sign in",
+      href: "session",
+    };
   },
   components: {
     AuthSidebar,
     AuthNav,
     AuthSignUp,
-    AuthSignIn,
   },
 };
 </script>
@@ -35,5 +36,11 @@ export default {
   position: relative;
   height: 100vh;
   width: 100%;
+}
+
+@media (min-width: 960px) {
+  .row {
+    min-width: 100%;
+  }
 }
 </style>

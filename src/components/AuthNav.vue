@@ -1,13 +1,20 @@
 <template>
-    <div class="auth-link">
-      <p class="text-right">Already a member? <a href="#">Sign In</a></p>
-    </div>
+  <div class="auth-link">
+    <p class="text-right">
+      {{ txt }} <router-link :to="href">{{ hrefTxt }}</router-link>
+    </p>
+  </div>
 </template>
 <script>
 export default {
   name: "AuthNav",
   data() {
     return {};
+  },
+  props: {
+    txt: String,
+    hrefTxt: String,
+    href: String,
   },
 };
 </script>

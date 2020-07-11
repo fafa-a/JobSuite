@@ -1,24 +1,25 @@
 <template>
   <v-app>
+    <router-view></router-view>
     <v-main>
-      <AuthPage />
+      <!-- <AuthPage />
       <headerH1 msg="Job suite" />
-      <jobForm @offerAdded="snackbar = true" />
+      <jobForm @offerAdded="snackbar = true" /> -->
     </v-main>
   </v-app>
 </template>
 
 <script>
-import AuthPage from "./components/AuthPage";
-import HeaderH1 from "./components/HeaderH1";
-import JobForm from "./components/JobForm";
+// import AuthPage from "./components/AuthPage";
+// import HeaderH1 from "./components/HeaderH1";
+// import JobForm from "./components/JobForm";
 export default {
   name: "App",
 
   components: {
-    AuthPage,
-    HeaderH1,
-    JobForm,
+    // AuthPage,
+    // HeaderH1,
+    // JobForm,
   },
 
   data: () => ({}),
@@ -36,16 +37,15 @@ export default {
 .row {
   margin: auto;
 }
-
-/* @media (min-width: 960px) {
+@media (min-width: 960px) {
   .row {
     max-width: 85%;
-    margin: auto;
+    margin: auto !important;
   }
 }
 @media (min-width: 1600px) {
   .row {
     max-width: 70%;
   }
-} */
+}
 </style>

@@ -67,14 +67,14 @@
         </v-col>
       </v-row>
     </v-form>
-
+  
     <JobCard :data="jobInfo" :date="now" :snackbar="snackbar"></JobCard>
   </div>
 </template>
 <script>
 import moment from "moment";
 import JobCard from "./JobCard";
-import db from "@/fb";
+import { db } from "@/fb";
 
 export default {
   name: "JobForm",

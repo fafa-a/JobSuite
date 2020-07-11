@@ -21,7 +21,7 @@
           counter
           @click:append="show = !show"
         ></v-text-field>
-        <v-btn class="mt-6" color="indigo" dark large @click="submit"
+        <v-btn class="mt-6" color="indigo" dark large @click="signIn"
           >Sign In</v-btn
         >
       </v-form>
@@ -53,9 +53,16 @@ export default {
       const email = this.email;
       const password = this.password;
 
-      auth.signInWithEmailAndPassword(email, password).then(() => {
-        this.$refs.form.reset();
-      });
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          this.$refs.form.reset();
+          this.$router.push("/jobpage");
+        })
+        .catch((error) => alert(error.message))
+        .then(() => {
+          this.$refs.form.reset();
+        });
     },
   },
   components: { AuthWithSocial },

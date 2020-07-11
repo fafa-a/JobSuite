@@ -54,10 +54,13 @@ export default {
       console.log(email);
       console.log(password);
 
-      auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-        console.log(cred.user);
-        this.$refs.form.reset();
-      });
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          this.$refs.form.reset();
+          this.$router.push("/jobpage");
+        })
+        .catch((error) => alert(error.message));
     },
   },
   components: {
