@@ -51,8 +51,6 @@ export default {
     submit: function() {
       const email = this.email;
       const password = this.password;
-      console.log(email);
-      console.log(password);
 
       auth
         .createUserWithEmailAndPassword(email, password)

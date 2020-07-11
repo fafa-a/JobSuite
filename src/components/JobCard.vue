@@ -62,6 +62,7 @@
 
 <script>
 import { db } from "@/fb";
+import { auth } from "@/fb";
 import DialogComfirm from "./DialogConfirm.vue";
 export default {
   name: "JobCard",
@@ -91,13 +92,11 @@ export default {
     },
   },
   created() {
-    // db.collection("job-offer")
-    //   .get()
-    //   .then((snapshot) => {
-    //     snapshot.docs.forEach((doc) => {
-    //       console.log(doc.data());
-    //     });
-    //   });
+    auth.onAuthStateChanged((user) => {
+      if (user == null) {
+        this.$router.push("/session");
+      }
+    });
     db.collection("job-offer").onSnapshot((res) => {
       const changes = res.docChanges();
 
