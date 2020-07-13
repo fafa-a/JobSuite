@@ -70,9 +70,10 @@ export default {
     return {
       snackbarDel: false,
       dialog: false,
+      data: [],
     };
   },
-  props: ["data", "date"],
+  props: ["date"],
   components: { "dialog-comfirm": DialogComfirm },
   methods: {
     deleted: function(job) {
@@ -97,6 +98,17 @@ export default {
         this.$router.push("/session");
       }
     });
+
+    // db.collection("job-offer")
+    //   .get()
+    //   .then((snapshot) => {
+    //     snapshot.docs.forEach((doc) => {
+    //       if (doc.data().author == auth.currentUser.uid) {
+    //         this.data.push(doc.data());
+    //       }
+    //     });
+    //   });
+
     db.collection("job-offer").onSnapshot((res) => {
       const changes = res.docChanges();
 

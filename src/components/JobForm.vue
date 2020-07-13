@@ -53,6 +53,7 @@
             label="Complements"
           ></v-textarea>
         </v-col>
+
         <v-col class="d-flex justify-center align-center">
           <v-btn
             elevation="7"
@@ -67,7 +68,7 @@
         </v-col>
       </v-row>
     </v-form>
-  
+
     <JobCard :data="jobInfo" :date="now" :snackbar="snackbar"></JobCard>
   </div>
 </template>
@@ -75,6 +76,7 @@
 import moment from "moment";
 import JobCard from "./JobCard";
 import { db } from "@/fb";
+import { auth } from "@/fb";
 
 export default {
   name: "JobForm",
@@ -83,6 +85,7 @@ export default {
       valid: false,
       loading: false,
       snackbar: false,
+      // author: ,
       formData: {
         company: "",
         job: "",
@@ -110,6 +113,7 @@ export default {
       if (this.valid) {
         this.loading = true;
         const jobOffer = {
+          author: auth.currentUser.uid,
           company: this.formData.company,
           job: this.formData.job,
           URL: this.formData.URLJobOffer,
