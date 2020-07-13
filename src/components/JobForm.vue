@@ -69,7 +69,7 @@
       </v-row>
     </v-form>
 
-    <JobCard :data="jobInfo" :date="now" :snackbar="snackbar"></JobCard>
+    <JobCard :date="now" :snackbar="snackbar"></JobCard>
   </div>
 </template>
 <script>
@@ -85,7 +85,6 @@ export default {
       valid: false,
       loading: false,
       snackbar: false,
-      // author: ,
       formData: {
         company: "",
         job: "",
@@ -93,7 +92,6 @@ export default {
         pieceSend: [],
         txt: "",
       },
-      jobInfo: [],
       nameRules: [
         (v) => !!v || "Field is required",
         (v) =>

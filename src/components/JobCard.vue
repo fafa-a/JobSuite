@@ -4,7 +4,7 @@
       <span>Job offer deleted !</span>
       <v-btn text color="white" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-col cols="12" lg="3" sm="4" v-for="(job, index) in data" :key="index">
+    <v-col cols="12" lg="3" sm="4" v-for="(job, index) in jobs" :key="index">
       <v-card class="mb-6 mx-auto" min-width="300">
         <v-card-text>
           <p class="display-1 text--primary text-capitalize">{{ job.job }}</p>
@@ -70,7 +70,7 @@ export default {
     return {
       snackbarDel: false,
       dialog: false,
-      data: [],
+      jobs: [],
     };
   },
   props: ["date"],
@@ -99,30 +99,30 @@ export default {
       }
     });
 
-    // db.collection("job-offer")
-    //   .get()
-    //   .then((snapshot) => {
-    //     snapshot.docs.forEach((doc) => {
-    //       if (doc.data().author == auth.currentUser.uid) {
-    //         this.data.push(doc.data());
-    //       }
-    //     });
-    //   });
-
-    db.collection("job-offer").onSnapshot((res) => {
-      const changes = res.docChanges();
-
-      changes.forEach((change) => {
-        if (change.type === "added") {
-          this.data.push({
-            ...change.doc.data(),
-            id: change.doc.id,
-          });
-        } else if (change.type === "removed") {
-          location.reload();
-        }
+    db.collection("job-offer")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          if (doc.data().author == auth.currentUser.uid) {
+            this.jobs.push(doc.data());
+          }
+        });
       });
-    });
+
+    // db.collection("job-offer").onSnapshot((res) => {
+    //   const changes = res.docChanges();
+
+    //   changes.forEach((change) => {
+    //     if (change.type === "added") {
+    //       this.data.push({
+    //         ...change.doc.data(),
+    //         id: change.doc.id,
+    //       });
+    //     } else if (change.type === "removed") {
+    //       location.reload();
+    //     }
+    //   });
+    // });
   },
 };
 </script>
