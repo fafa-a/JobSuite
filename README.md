@@ -1,24 +1,14 @@
 # job-suite
 
-## Project setup
-```
-npm install
-```
+![jobsuite screenshot](./src/assets/App-screenshot.png "multiple job offers screenshot")
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+The goal of this side project is making a website for monitoring offers of job apply. In same way learning the framework vuejs. I stopped this project fews month ago. I remake it with the composition api and finish the project as soon as possible .
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Installation
 
-### Lints and fixes files
-```
-npm run lint
-```
+Project is not **finished**.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. git clone this repo
+2. cd job-suite
+3. npm install
+4. npm run serve
